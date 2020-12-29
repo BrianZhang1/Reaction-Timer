@@ -51,7 +51,9 @@ class ReactionTimer {
 
 function start() {
     startButton = document.querySelector(".startButton");
+    viewText = document.querySelector("#viewText");
     startButton.style.visibility = "hidden";
+    viewText.style.visibility = "hidden";
     let timer = new ReactionTimer(exit);
     timer.startDelayTimer(end);
 }
