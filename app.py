@@ -18,7 +18,6 @@ def index():
     connection.commit()
     return redirect("/")
 
-# Error is here. DELETE FROM isn't returning any errors, but it also isn't working.
 @app.route("/view", methods=["GET", "POST"])
 def view():
     connection = sqlite3.connect("rt.db")
