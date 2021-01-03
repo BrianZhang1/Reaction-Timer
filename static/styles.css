@@ -10,23 +10,46 @@
     transform: translate(-50%, 0);
 }
 .rectangle {
+    position: absolute;
     height: 100%;
     width: 100%;
     background-color: red;
 }
+.homeText {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
 .startButton {
-    height: 40px;
-    width: 150px;
+    height: 10vw;
+    width: 40vw;
     border-radius: 5%;
     background-color: green;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 2vw;
+    font-size: 4vw;
+}
+.viewText {
+    font-size: 1.5vw;
 }
 .results {
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+.resultsText {
+    font-size: 4vw;
+}
+.resultsChoiceText {
+    font-size: 2vw;
 }
 table {
     font-family: arial, sans-serif;
