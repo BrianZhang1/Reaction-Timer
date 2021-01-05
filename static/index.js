@@ -35,8 +35,7 @@ class ReactionTimer {
             clearInterval(this.timer);
             this.timeElapsed = 0;
             this.startTime = new Date();
-            document.querySelector(".rectangle").style.backgroundColor =
-                "green";
+            document.body.style.backgroundColor = "green";
             document.onkeydown = (event) => {
                 if (event.key == " ") {
                     let end = new Date();
