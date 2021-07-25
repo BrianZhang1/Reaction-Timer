@@ -3,6 +3,11 @@ import sqlite3
 
 app = Flask(__name__)
 
+con = sqlite3.connect("rt.db")
+cur = con.cursor()
+cur.execute("CREATE TABLE IF NOT EXISTS times (id INTEGER, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, rt INTEGER, pi INTEGER, PRIMARY KEY(id));")
+con.commit()
+con.close()
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -12,21 +17,21 @@ def index():
     pi = request.form.get("pi")
     if rt == None:
         return redirect("/")
-    connection = sqlite3.connect("rt.db")
-    cursor = connection.cursor()
-    cursor.execute("INSERT INTO times (rt, pi) VALUES (?, ?)", (rt, pi))
-    connection.commit()
+    con = sqlite3.connect("rt.db")
+    cur = con.cursor()
+    cur.execute("INSERT INTO times (rt, pi) VALUES (?, ?)", (rt, pi))
+    con.commit()
+    con.close()
     return redirect("/")
 
 @app.route("/view", methods=["GET", "POST"])
 def view():
-    connection = sqlite3.connect("rt.db")
-    cursor = connection.cursor()
+    con = sqlite3.connect("rt.db")
+    cur = con.cursor()
     if (request.method == "GET"):
-        cursor.execute("SELECT * FROM times")
-        db = cursor.fetchall()
-        return render_template("view.html", db=db)
+        return render_template("view.html", db=cur.execute("SELECT * FROM times"))
     row_id = request.form.get("id")
-    cursor.execute("DELETE FROM times WHERE id=?", (row_id,))
-    connection.commit()
+    cur.execute("DELETE FROM times WHERE id=?", (row_id,))
+    con.commit()
+    con.close()
     return redirect("/view")
