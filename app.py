@@ -30,6 +30,9 @@ con.close()
 
 @app.route("/")
 def index():
+    if not session.get("logged_in"):
+        session["logged_in"] = False
+
     logged_in = session["logged_in"]
     if logged_in:
         con = sqlite3.connect("data.db")
@@ -77,6 +80,9 @@ def test():
 
 @app.route("/view", methods=["GET", "POST"])
 def view():
+    if not session.get("logged_in"):
+        session["logged_in"] = False
+
     if (request.method == "GET"):
         con = sqlite3.connect("data.db")
         cur = con.cursor()
@@ -109,6 +115,9 @@ def view():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if not session.get("logged_in"):
+        session["logged_in"] = False
+
     if request.method == "GET":
         if not session.get("logged_in"):
             session["logged_in"] = False
@@ -172,6 +181,9 @@ def register():
 
 @app.route("/logout", methods=["GET"])
 def logout():
+    if not session.get("logged_in"):
+        session["logged_in"] = False
+
     if session["logged_in"]:
         session["logged_in"] = False
         session.pop("uid")
@@ -181,7 +193,10 @@ def logout():
 
 @app.route("/profile", methods=["GET"])
 def profile():
+    if not session.get("logged_in"):
+        session["logged_in"] = False
     logged_in = session["logged_in"]
+
     if logged_in:
         con = sqlite3.connect("data.db")
         cur = con.cursor()

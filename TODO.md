@@ -2,8 +2,6 @@
 
 ## Major Plans
 
-- implement homepage with about
-- implement navbar with homepage, test page, profile, and about
 - implement profile page with change password and shows profile info
 - view page big change plan
     - view page sort by top times, most recent
@@ -19,6 +17,10 @@
 - revise all redirect/render_template to see if it is fitting
 - "too early" in test, display "too early"
 - users can only delete their own times
+- create margin for view page, make it look decent
+- login instead/return to home for register page
+- navbar for register, login, and logout page
+- change all session[] to session.get()
 
 ## Maybe Implement?
 

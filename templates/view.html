@@ -35,7 +35,6 @@
             </div>
         </div>
         <h1>Data</h1>
-        <h3>Press b to return</h3>
         <table>
             <thead>
                 <tr>
@@ -69,13 +68,5 @@
                 {% endfor %}
             </tbody>
         </table>
-        <form action="/" method="GET" id="returnToHome"></form>
-        <script>
-            document.onkeydown = (event) => {
-                if (event.key == "b") {
-                    document.querySelector("#returnToHome").submit();
-                }
-            };
-        </script>
     </body>
 </html>
