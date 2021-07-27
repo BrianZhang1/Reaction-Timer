@@ -30,7 +30,18 @@ con.close()
 
 @app.route("/")
 def index():
-    return redirect("/test")
+    logged_in = session["logged_in"]
+    if logged_in:
+        con = sqlite3.connect("data.db")
+        cur = con.cursor()
+        cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
+        username = cur.fetchone()[0]
+        cur.close()
+        con.close()
+        return render_template("index.html", logged_in=True, username=username)
+
+    elif not logged_in:
+        return render_template("index.html", logged_in=False)
 
 
 @app.route("/test", methods=["GET", "POST"])
@@ -40,7 +51,18 @@ def test():
 
     if request.method == "GET":
         logged_in = session["logged_in"]
-        return render_template("test.html", logged_in=logged_in)
+        if logged_in:
+            con = sqlite3.connect("data.db")
+            cur = con.cursor()
+            cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
+            username = cur.fetchone()[0]
+            cur.close()
+            con.close()
+            return render_template("test.html", logged_in=True, username=username)
+        elif not logged_in:
+            return render_template("test.html", logged_in=False)
+
+
     elif request.method == "POST":
         rt = request.form.get("rt")
         pi = request.form.get("pi")
@@ -50,20 +72,34 @@ def test():
         con.commit()
         cur.close()
         con.close()
-        return redirect("/")
+        return redirect("/test")
 
 
 @app.route("/view", methods=["GET", "POST"])
 def view():
-    con = sqlite3.connect("data.db")
-    cur = con.cursor()
-    cur.execute("""
-        SELECT * FROM rts
-        JOIN users ON users.id = rts.uid
-        """)
     if (request.method == "GET"):
-        return render_template("view.html", db=cur.fetchall())
+        con = sqlite3.connect("data.db")
+        cur = con.cursor()
+        cur.execute("""
+            SELECT * FROM rts
+            JOIN users ON users.id = rts.uid
+            """)
+        db = cur.fetchall()
+        logged_in = session["logged_in"]
+        if logged_in:
+            con = sqlite3.connect("data.db")
+            cur = con.cursor()
+            cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
+            username = cur.fetchone()[0]
+            cur.close()
+            con.close()
+            return render_template("view.html", db=db, logged_in=True, username=username)
+        elif not logged_in:
+            return render_template("view.html", db=db, logged_in=False)
+
     elif (request.method == "POST"):
+        con = sqlite3.connect("data.db")
+        cur = con.cursor()
         row_id = request.form.get("id")
         cur.execute("DELETE FROM rts WHERE id=?", (row_id,))
         con.commit()
@@ -142,3 +178,18 @@ def logout():
         return render_template("logout.html", logged_in=True)
     elif not session["logged_in"]:
         return render_template("logout.html", logged_in=False)
+
+@app.route("/profile", methods=["GET"])
+def profile():
+    logged_in = session["logged_in"]
+    if logged_in:
+        con = sqlite3.connect("data.db")
+        cur = con.cursor()
+        cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
+        username = cur.fetchone()[0]
+        cur.close()
+        con.close()
+        return render_template("profile.html", logged_in=True, username=username)
+
+    elif not logged_in:
+        return render_template("profile.html", logged_in=False)

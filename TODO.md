@@ -13,7 +13,7 @@
 
 ## Fixes/Minor Changes
 
-- Make styles element specific
+- Make styles in css use ID when appropriate
 - onkeydown -> event listeners
 - change redirect form JS (different way to send a simple GET request from JS)
 - revise all redirect/render_template to see if it is fitting

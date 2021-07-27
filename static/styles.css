@@ -8,6 +8,62 @@ body {
 }
 
 
+/*  Index  */
+
+#index_page_wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+#navbar {
+    top: 0;
+    position: sticky;
+    height: 60px;
+    background-color: lightskyblue;
+    border-bottom: 3px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#navbar_left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.nav_button {
+    margin-right: 30px;
+    font-size: 1.5rem;
+    background-color: transparent;
+    font-weight: bold;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 4px solid lightblue;
+}
+
+#navbar_right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+#index_content {
+    flex: 1;
+    margin: 40px;
+}
+
+#index_about_section {
+    width: 500px;
+}
+
+
 /*  Database View  */
 
 table {
@@ -60,9 +116,6 @@ tr:nth-child(even) {
     justify-content: center;
     margin-bottom: 2vw;
     font-size: 4vw;
-}
-.viewText {
-    font-size: 1.5vw;
 }
 .results {
     display: none;

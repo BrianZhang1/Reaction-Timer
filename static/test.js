@@ -2,12 +2,6 @@ document.onkeydown = (e) => {
     if (e.key == " ") {
         document.onkeydown = null;
         startTest();
-    } else if (e.key == "v") {
-        let form = document.createElement("form");
-        document.body.appendChild(form);
-        form.action = "/view";
-        form.method = "get";
-        form.submit();
     }
 }
 
@@ -47,9 +41,7 @@ class ReactionTimer {
 
 function startTest() {
     startButton = document.querySelector(".startButton");
-    viewText = document.querySelector(".viewText");
     startButton.style.display = "none";
-    viewText.style.display = "none";
     let timer = new ReactionTimer(endTest);
     timer.startDelayTimer();
 }

@@ -8,11 +8,36 @@
     </head>
     <body>
         <div class="app">
-            <div class="navbar"></div>
+            <div id="navbar">
+                <div id="navbar_left">
+                    <form action="/" method="GET">
+                        <input type="submit" value="Home" class="nav_button" id="home_button">
+                    </form>
+                    <form action="/test" method="GET">
+                        <input type="submit" value="Test" class="nav_button" id="test_button">
+                    </form>
+                    <form action="/view" method="GET">
+                        <input type="submit" value="Leaderboard" class="nav_button" id="leaderboard_button">
+                    </form>
+                </div>
+                <div id="navbar_right">
+                    {% if not logged_in %}
+                        <form action="/login" method="GET">
+                            <input type="submit" value="Login" class="nav_button" id="login_button">
+                        </form>
+                        <form action="/register" method="GET">
+                            <input type="submit" value="Register" class="nav_button" id="register_button">
+                        </form>
+                    {% elif logged_in %}
+                        <form action="/profile" method="GET">
+                            <input type="submit" value={{ username }} class="nav_button" id="profile_button">
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
             <div class="content" id="content">
                 <div class="homeText">
                     <div class="startButton">Spacebar to Start</div>
-                    <div class="viewText">Or press v to view data recorded</div>
                 </div>
                 <div class="results" id="results">
                     <h1 class="resultsText" id="resultsText"></h1>
