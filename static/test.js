@@ -40,8 +40,8 @@ class ReactionTimer {
 }
 
 function startTest() {
-    startButton = document.querySelector(".startButton");
-    startButton.style.display = "none";
+    homeText = document.querySelector(".homeText");
+    homeText.style.display = "none";
     let timer = new ReactionTimer(endTest);
     timer.startDelayTimer();
 }
