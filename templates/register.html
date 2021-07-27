@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <h3>WARNING: This website is not fully secure, do not reuse any important passwords.</h3>
+    {% if usernameTaken %}
+    <p style="color: red">Username is taken.</p>
+    {% endif %}
+    <div>
+        <form action="/register" method="POST">
+            <label>Username: </label>
+            <input name="username" type="text" placeholder="Username" autocomplete="off">
+            <br>
+            <br>
+            <label>Password: </label>
+            <input name="password" type="password" placeholder="Password">
+            <br>
+            <br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+    <div>
+</body>
+</html>
