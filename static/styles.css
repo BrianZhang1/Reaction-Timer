@@ -78,6 +78,11 @@ tr:nth-child(even) {
 
 /*  Test  */
 
+.test_page_wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
 .content {
     background-color: lightgray;
