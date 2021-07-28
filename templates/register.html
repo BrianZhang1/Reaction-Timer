@@ -29,24 +29,25 @@
             </form>
         </div>
     </div>
-    <h1>Register</h1>
-    <h3>WARNING: This website is not fully secure, do not reuse any important passwords.</h3>
-    {% if usernameTaken %}
-    <p style="color: red">Username is taken.</p>
-    {% endif %}
-    <div>
-        <form action="/register" method="POST">
-            <label>Username: </label>
-            <input name="username" type="text" placeholder="Username" autocomplete="off">
-            <br>
-            <br>
-            <label>Password: </label>
-            <input name="password" type="password" placeholder="Password">
-            <br>
-            <br>
-            <input type="submit" value="Register">
-        </form>
+    <div class="content">
+        <h1>Register</h1>
+        <h3>WARNING: This website is not fully secure, do not reuse any important passwords.</h3>
+        {% if usernameTaken %}
+        <p style="color: red">Username is taken.</p>
+        {% endif %}
+        <div>
+            <form action="/register" method="POST">
+                <label>Username: </label>
+                <input name="username" type="text" placeholder="Username" autocomplete="off">
+                <br>
+                <br>
+                <label>Password: </label>
+                <input name="password" type="password" placeholder="Password">
+                <br>
+                <br>
+                <input type="submit" value="Register">
+            </form>
+        </div>
     </div>
-    <div>
 </body>
 </html>

@@ -37,39 +37,41 @@
                 {% endif %}
             </div>
         </div>
-        <h1>Data</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Timestamp</th>
-                    <th>RT (ms)</th>
-                    <th>PI (ms)</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in db %}
-                <tr>
-                    <td>{{ row[6] }}</td>
-                    <td>{{ row[2] }}</td>
-                    <td>{{ row[3] }}</td>
-                    <td>{{ row[4] }}</td>
-                    <td>
-                        <form action="/view" method="POST">
-                            <input
-                                name="id"
-                                type="hidden"
-                                value={{
-                                row[0]
-                                }}
-                            />
-                            <input type="submit" value="X" />
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="content">
+            <h1>Data</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Timestamp</th>
+                        <th>RT (ms)</th>
+                        <th>PI (ms)</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in db %}
+                    <tr>
+                        <td>{{ row[6] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>
+                            <form action="/view" method="POST">
+                                <input
+                                    name="id"
+                                    type="hidden"
+                                    value={{
+                                    row[0]
+                                    }}
+                                />
+                                <input type="submit" value="X" />
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

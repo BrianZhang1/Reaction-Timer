@@ -29,23 +29,25 @@
             </form>
         </div>
     </div>
-    <h1>Login</h1>
-    {% if failed %}
-    <p style="color: red">Incorrect Username or Password</p>
-    {% endif %}
-    <div>
-        <form action="/login" method="POST">
-            <label>Username: </label>
-            <input name="username" type="text" placeholder="Username" autocomplete="off">
-            <label>Password: </label>
-            <input name="password" type="password" placeholder="Password">
-            <input type="submit" value="Login">
-        </form>
-    </div>
-    <div>
-        <form action="/register" method="GET">
-            <input type="submit" value="Register Instead">
-        </form>
+    <div class="content">
+        <h1>Login</h1>
+        {% if failed %}
+        <p style="color: red">Incorrect Username or Password</p>
+        {% endif %}
+        <div>
+            <form action="/login" method="POST">
+                <label>Username: </label>
+                <input name="username" type="text" placeholder="Username" autocomplete="off">
+                <label>Password: </label>
+                <input name="password" type="password" placeholder="Password">
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div>
+            <form action="/register" method="GET">
+                <input type="submit" value="Register Instead">
+            </form>
+        </div>
     </div>
 </body>
 </html>
