@@ -7,10 +7,7 @@ body {
     background-color: #e1f5fe;
 }
 
-
-/*  Index  */
-
-#index_page_wrapper {
+.page_wrapper {
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -46,7 +43,7 @@ body {
     border-bottom: 4px solid lightblue;
 }
 
-#index_content {
+.content {
     flex: 1;
     margin: 40px;
 }
@@ -78,18 +75,11 @@ tr:nth-child(even) {
 
 /*  Test  */
 
-.test_page_wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
 
-.content {
-    background-color: lightgray;
+.centered {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1;
 }
 
 .homeText {
