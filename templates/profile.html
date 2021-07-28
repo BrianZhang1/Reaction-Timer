@@ -8,36 +8,36 @@
     <title>Profile</title>
 </head>
 <body>
-    <div id="navbar">
-        <div id="navbar_left">
-            <form action="/" method="GET">
-                <input type="submit" value="Home" class="nav_button" id="home_button">
-            </form>
-            <form action="/test" method="GET">
-                <input type="submit" value="Test" class="nav_button" id="test_button">
-            </form>
-            <form action="/view" method="GET">
-                <input type="submit" value="Leaderboard" class="nav_button" id="leaderboard_button">
-            </form>
-        </div>
-        <div id="navbar_right">
-            {% if not logged_in %}
+    <div class="navbar">
+            <div>
+                <form action="/" method="GET">
+                    <input type="submit" value="Home"  id="home_button">
+                </form>
+                <form action="/test" method="GET">
+                    <input type="submit" value="Test"  id="test_button">
+                </form>
+                <form action="/view" method="GET">
+                    <input type="submit" value="Leaderboard"  id="leaderboard_button">
+                </form>
+            </div>
+            <div>
+                {% if not logged_in %}
                 <form action="/login" method="GET">
-                    <input type="submit" value="Login" class="nav_button" id="login_button">
+                    <input type="submit" value="Login"  id="login_button">
                 </form>
                 <form action="/register" method="GET">
-                    <input type="submit" value="Register" class="nav_button" id="register_button">
+                    <input type="submit" value="Register"  id="register_button">
                 </form>
-            {% elif logged_in %}
+                {% elif logged_in %}
                 <form action="/profile" method="GET">
-                    <input type="submit" value={{ username }} class="nav_button" id="profile_button">
+                    <input type="submit" value={{ username }}  id="profile_button">
                 </form>
                 <form action="/logout" method="GET">
-                    <input type="submit" value="Logout" class="nav_button" id="logout_button">
+                    <input type="submit" value="Logout"  id="logout_button">
                 </form>
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
-    </div>
     <p>Unfinished! Check back later :)</p>
     <p>- Brian</p>
 </body>

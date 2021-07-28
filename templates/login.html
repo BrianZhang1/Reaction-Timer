@@ -4,23 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
     <title>Login</title>
 </head>
 <body>
+    <div class="navbar">
+        <div>
+            <form action="/" method="GET">
+                <input type="submit" value="Home"  id="home_button">
+            </form>
+            <form action="/test" method="GET">
+                <input type="submit" value="Test"  id="test_button">
+            </form>
+            <form action="/view" method="GET">
+                <input type="submit" value="Leaderboard"  id="leaderboard_button">
+            </form>
+        </div>
+        <div>
+            <form action="/login" method="GET">
+                <input type="submit" value="Login"  id="login_button">
+            </form>
+            <form action="/register" method="GET">
+                <input type="submit" value="Register"  id="register_button">
+            </form>
+        </div>
+    </div>
     <h1>Login</h1>
     {% if failed %}
-        <p style="color: red">Incorrect Username or Password</p>
+    <p style="color: red">Incorrect Username or Password</p>
     {% endif %}
     <div>
         <form action="/login" method="POST">
             <label>Username: </label>
             <input name="username" type="text" placeholder="Username" autocomplete="off">
-            <br>
-            <br>
             <label>Password: </label>
             <input name="password" type="password" placeholder="Password">
-            <br>
-            <br>
             <input type="submit" value="Login">
         </form>
     </div>

@@ -8,6 +8,7 @@
     - view page search bar, search for users
     - view page allow delete only if logged in as target post's user
 - when logged out, after test and redirect to login page, save results after logging in.
+- navbar button animations onhover (underline growth, change color)
 
 ## Fixes/Minor Changes
 

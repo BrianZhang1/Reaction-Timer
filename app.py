@@ -27,6 +27,16 @@ con.commit()
 cur.close()
 con.close()
 
+def uid_to_username(uid):
+    con = sqlite3.connect("data.db")
+    cur = con.cursor()
+    cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
+    username = cur.fetchone()
+    if username:
+        username = username[0]
+    cur.close()
+    con.close()
+    return username
 
 @app.route("/")
 def index():
@@ -37,8 +47,7 @@ def index():
     if logged_in:
         con = sqlite3.connect("data.db")
         cur = con.cursor()
-        cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
-        username = cur.fetchone()[0]
+        username = uid_to_username(session["uid"])
         cur.close()
         con.close()
         return render_template("index.html", logged_in=True, username=username)
@@ -57,8 +66,7 @@ def test():
         if logged_in:
             con = sqlite3.connect("data.db")
             cur = con.cursor()
-            cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
-            username = cur.fetchone()[0]
+            username = uid_to_username(session["uid"])
             cur.close()
             con.close()
             return render_template("test.html", logged_in=True, username=username)
@@ -95,8 +103,7 @@ def view():
         if logged_in:
             con = sqlite3.connect("data.db")
             cur = con.cursor()
-            cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
-            username = cur.fetchone()[0]
+            username = uid_to_username(session["uid"])
             cur.close()
             con.close()
             return render_template("view.html", db=db, logged_in=True, username=username)
@@ -118,14 +125,12 @@ def login():
     if not session.get("logged_in"):
         session["logged_in"] = False
 
+    logged_in = session.get("logged_in")
     if request.method == "GET":
-        if not session.get("logged_in"):
-            session["logged_in"] = False
-        
-        if session["logged_in"]:
-            return "Already Logged In!"
-        else:
+        if not logged_in:
             return render_template("login.html")
+        else:
+            return redirect("/")
     elif request.method == "POST":
         usernameInput = request.form.get("username")
         passwordInput = request.form.get("password")
@@ -151,14 +156,14 @@ def login():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if not session.get("logged_in"):
+        session["logged_in"] = False
+
     if (request.method == "GET"):
-        if not session.get("logged_in"):
-            session["logged_in"] = False
-        
-        if session["logged_in"]:
-            return "Already Logged In!"
-        else:
+        if not session["logged_in"]:
             return render_template("register.html")
+        else:
+            return redirect("/")
     
     elif (request.method == "POST"):
         username = request.form.get("username")
@@ -184,12 +189,11 @@ def logout():
     if not session.get("logged_in"):
         session["logged_in"] = False
 
-    if session["logged_in"]:
+    logged_in = session["logged_in"]
+    if logged_in:
         session["logged_in"] = False
         session.pop("uid")
-        return render_template("logout.html", logged_in=True)
-    elif not session["logged_in"]:
-        return render_template("logout.html", logged_in=False)
+    return redirect("/")
 
 @app.route("/profile", methods=["GET"])
 def profile():
@@ -200,8 +204,7 @@ def profile():
     if logged_in:
         con = sqlite3.connect("data.db")
         cur = con.cursor()
-        cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
-        username = cur.fetchone()[0]
+        username = uid_to_username(session["uid"])
         cur.close()
         con.close()
         return render_template("profile.html", logged_in=True, username=username)

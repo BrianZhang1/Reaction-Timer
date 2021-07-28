@@ -16,7 +16,7 @@ body {
     flex-direction: column;
 }
 
-#navbar {
+.navbar {
     top: 0;
     position: sticky;
     height: 60px;
@@ -27,15 +27,15 @@ body {
     justify-content: space-between;
 }
 
-#navbar_left {
+.navbar > div {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-left: 20px;
+    margin: 20px;
 }
 
-.nav_button {
+.navbar > div > form > input {
     margin-right: 30px;
     font-size: 1.5rem;
     background-color: transparent;
@@ -44,14 +44,6 @@ body {
     border-right: none;
     border-left: none;
     border-bottom: 4px solid lightblue;
-}
-
-#navbar_right {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 10px;
 }
 
 #index_content {
@@ -86,7 +78,7 @@ tr:nth-child(even) {
 
 /*  Test  */
 
-.app {
+.test_page_wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
