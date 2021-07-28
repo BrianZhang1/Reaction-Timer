@@ -9,35 +9,35 @@
     <body>
         <div class="test_page_wrapper">
             <div class="navbar">
-            <div>
-                <form action="/" method="GET">
-                    <input type="submit" value="Home"  id="home_button">
-                </form>
-                <form action="/test" method="GET">
-                    <input type="submit" value="Test"  id="test_button">
-                </form>
-                <form action="/view" method="GET">
-                    <input type="submit" value="Leaderboard"  id="leaderboard_button">
-                </form>
+                <div>
+                    <form action="/" method="GET">
+                        <input type="submit" value="Home"  id="home_button">
+                    </form>
+                    <form action="/test" method="GET">
+                        <input type="submit" value="Test"  id="test_button">
+                    </form>
+                    <form action="/view" method="GET">
+                        <input type="submit" value="Leaderboard"  id="leaderboard_button">
+                    </form>
+                </div>
+                <div>
+                    {% if not logged_in %}
+                    <form action="/login" method="GET">
+                        <input type="submit" value="Login"  id="login_button">
+                    </form>
+                    <form action="/register" method="GET">
+                        <input type="submit" value="Register"  id="register_button">
+                    </form>
+                    {% elif logged_in %}
+                    <form action="/profile" method="GET">
+                        <input type="submit" value={{ username }}  id="profile_button">
+                    </form>
+                    <form action="/logout" method="GET">
+                        <input type="submit" value="Logout"  id="logout_button">
+                    </form>
+                    {% endif %}
+                </div>
             </div>
-            <div>
-                {% if not logged_in %}
-                <form action="/login" method="GET">
-                    <input type="submit" value="Login"  id="login_button">
-                </form>
-                <form action="/register" method="GET">
-                    <input type="submit" value="Register"  id="register_button">
-                </form>
-                {% elif logged_in %}
-                <form action="/profile" method="GET">
-                    <input type="submit" value={{ username }}  id="profile_button">
-                </form>
-                <form action="/logout" method="GET">
-                    <input type="submit" value="Logout"  id="logout_button">
-                </form>
-                {% endif %}
-            </div>
-        </div>
             <div class="content" id="content">
                 <div class="homeText">
                     <div class="startButton">Spacebar to Start</div>
