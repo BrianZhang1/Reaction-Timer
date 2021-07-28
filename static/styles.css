@@ -40,7 +40,14 @@ body {
     border-top: none;
     border-right: none;
     border-left: none;
-    border-bottom: 4px solid lightblue;
+    border-bottom: 2px solid lightblue;
+    color: #3d3d3d;
+    transition: border 300ms, color 300ms;
+}
+
+.navbar > div > form > input:hover {
+    border-bottom: 2px solid blue;
+    color: black;
 }
 
 .content {

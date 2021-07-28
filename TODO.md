@@ -14,8 +14,6 @@
 
 - Make styles in css use ID when appropriate
 - onkeydown -> event listeners
-- change redirect form JS (different way to send a simple GET request from JS)
-- revise all redirect/render_template to see if it is fitting
 - "too early" in test, display "too early"
 - users can only delete their own times
 - create margin for view page, make it look decent
