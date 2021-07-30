@@ -12,14 +12,9 @@
 
 ## Fixes/Minor Changes
 
-- Make styles in css use ID when appropriate
 - onkeydown -> event listeners
 - "too early" in test, display "too early"
 - users can only delete their own times
-- create margin for view page, make it look decent
-- login instead/return to home for register page
-- navbar for register, login, and logout page
-- change all session[] to session.get()
 
 ## Maybe Implement?
 
