@@ -1,7 +1,6 @@
 document.onkeydown = (e) => {
     if (e.key == " ") {
         document.onkeydown = null;
-        console.log("hello")
         startTest();
     }
 }
@@ -42,6 +41,8 @@ class ReactionTimer {
 
 function startTest() {
     document.querySelector("#test_page_start_button").innerHTML = ""
+
+    /* Create and start timer */
     let timer = new ReactionTimer(endTest);
     timer.startDelayTimer();
 }
@@ -75,7 +76,6 @@ function endTest(rt, pi) {
     document.onkeydown = (e) => {
         if (e.key == " ") {
             document.onkeydown = null;
-            console.log("hello")
             startTest();
         }
     }
