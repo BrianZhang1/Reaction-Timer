@@ -1,6 +1,7 @@
 document.onkeydown = (e) => {
     if (e.key == " ") {
         document.onkeydown = null;
+        console.log("hello")
         startTest();
     }
 }
@@ -26,7 +27,7 @@ class ReactionTimer {
             clearInterval(this.timer);
             this.timeElapsed = 0;
             this.startTime = new Date();
-            document.querySelector("#content").style.backgroundColor = "green";
+            document.querySelector("#test_page_start_button").style.backgroundColor = "green";
             document.onkeydown = (event) => {
                 if (event.key == " ") {
                     let end = new Date();
@@ -40,8 +41,7 @@ class ReactionTimer {
 }
 
 function startTest() {
-    homeText = document.querySelector(".homeText");
-    homeText.style.display = "none";
+    document.querySelector("#test_page_start_button").innerHTML = ""
     let timer = new ReactionTimer(endTest);
     timer.startDelayTimer();
 }
@@ -67,8 +67,16 @@ function endTest(rt, pi) {
         }
     };
     let results = "You Reacted in: " + rt + " ms!";
-    let resultsElement = document.querySelector("#results");
-    let resultsTextElement = document.querySelector("#resultsText");
-    resultsTextElement.innerHTML = results;
-    resultsElement.style.display = "flex";
+    document.querySelector("#test_page_results_text").innerHTML = results;
+    document.querySelector("#test_page_results_wrapper").style.display = "flex"
+
+    document.querySelector("#test_page_start_button").style.backgroundColor = "red"
+    document.querySelector("#test_page_start_button").innerHTML = "START"
+    document.onkeydown = (e) => {
+        if (e.key == " ") {
+            document.onkeydown = null;
+            console.log("hello")
+            startTest();
+        }
+    }
 }
