@@ -15,6 +15,7 @@
 - onkeydown -> event listeners
 - "too early" in test, display "too early"
 - users can only delete their own times
+- pretty fonts
 
 ## Maybe Implement?
 
