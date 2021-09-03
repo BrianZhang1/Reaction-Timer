@@ -43,9 +43,7 @@
                 <div class="centered" id="test_page_results_wrapper">
                     <h1>Results</h1>
                     <h3 id="test_page_results_text"></h3>
-                    <div>
-                        <!-- Stopped Here -->
-                    </div>
+                    <button id="test_page_results_submit_button">Submit</button>
                 </div>
                 <h1>Instructions</h1>
                 <ul class="centered">
@@ -61,7 +59,7 @@
             <input name="rt" type="hidden" id="rtTag">
             <input name="pi" type="hidden" id="piTag">
         </form>
-        <form action="/test" method="GET" id="skipResultsForm"></form>
+        <form action="/test" method="GET" id="resetTestForm"></form>
         <form action="/login" method="GET" id="loginForm"></form>
         <script>let logged_in = {{ logged_in|tojson }};</script>
         <script type="text/javascript" src="../static/test.js"></script>
