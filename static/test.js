@@ -62,7 +62,7 @@
     function endTest(rt, pi) {
 
         function startTestEventHandler(e) {
-            document.removeEventListener("click", startTestEventHandler);
+            start_button.removeEventListener("click", startTestEventHandler);
             startTest();
         }
 
