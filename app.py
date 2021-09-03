@@ -30,7 +30,7 @@ con.close()
 def uid_to_username(uid):
     con = sqlite3.connect("data.db")
     cur = con.cursor()
-    cur.execute("SELECT username FROM users WHERE id = ?", (session["uid"],))
+    cur.execute("SELECT username FROM users WHERE id = ?", (uid,))
     username = cur.fetchone()
     if username:
         username = username[0]
@@ -64,26 +64,26 @@ def test():
     if request.method == "GET":
         logged_in = session["logged_in"]
         if logged_in:
-            con = sqlite3.connect("data.db")
-            cur = con.cursor()
             username = uid_to_username(session["uid"])
-            cur.close()
-            con.close()
             return render_template("test.html", logged_in=True, username=username)
         elif not logged_in:
             return render_template("test.html", logged_in=False)
 
 
     elif request.method == "POST":
-        rt = request.form.get("rt")
-        pi = request.form.get("pi")
-        con = sqlite3.connect("data.db")
-        cur = con.cursor()
-        cur.execute("INSERT INTO rts (uid, rt, pi) VALUES (?, ?, ?)", (session["uid"], rt, pi))
-        con.commit()
-        cur.close()
-        con.close()
-        return redirect("/test")
+        logged_in = session["logged_in"]
+        if logged_in:
+            rt = request.form.get("rt")
+            pi = request.form.get("pi")
+            con = sqlite3.connect("data.db")
+            cur = con.cursor()
+            cur.execute("INSERT INTO rts (uid, rt, pi) VALUES (?, ?, ?)", (session["uid"], rt, pi))
+            con.commit()
+            cur.close()
+            con.close()
+            return redirect("/test")
+        else:
+            return redirect("/login")
 
 
 @app.route("/view", methods=["GET", "POST"])
@@ -142,7 +142,7 @@ def login():
             password = password[0]
         else:
             return render_template("login.html", failed=True)
-        if password and password == passwordInput:
+        if password == passwordInput:
             cur.execute("SELECT id FROM users WHERE username = ?", (usernameInput,))
             uid = cur.fetchone()[0]
             session["logged_in"] = True
@@ -180,6 +180,7 @@ def register():
         con.commit()
         cur.close()
         con.close()
+
         session["logged_in"] = True
         session["uid"] = uid
         return redirect("/")

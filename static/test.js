@@ -9,11 +9,11 @@
     function init() {
 
         function startTestEventHandler(e) {
-            document.removeEventListener("click", startTestEventHandler);
+            start_button.removeEventListener("click", startTestEventHandler);
             startTest();
         }
 
-        document.addEventListener("click", startTestEventHandler);
+        start_button.addEventListener("click", startTestEventHandler);
     }
 
 
@@ -54,61 +54,39 @@
                 endTest(rt, pi);
             }
 
-            document.addEventListener("click", pressEventHandler);
+            start_button.addEventListener("click", pressEventHandler);
         }
     }
 
 
     function endTest(rt, pi) {
 
-        function resultsEventHandler(e) {
-
-            if (e.key == " ") {
-
-                if (logged_in) {
-                    document.removeEventListener("keydown", resultsEventHandler)
-                    
-                    // Insert values and submit form
-                    let form = document.querySelector("#submitResultsForm");
-                    let rtTag = document.querySelector("#rtTag");
-                    rtTag.value = rt;
-                    let piTag = document.querySelector("#piTag");
-                    piTag.value = pi;
-                    form.submit();
-                }
-                else {
-                    document.removeEventListener("keydown", resultsEventHandler)
-
-                    document.querySelector("#loginForm").submit();
-                }
-
-            }
-            
-            else if (e.key == "d") {
-                document.removeEventListener("keydown", resultsEventHandler)
-
-                document.querySelector("#resetTestForm").submit();
-            }
-
+        function startTestEventHandler(e) {
+            document.removeEventListener("click", startTestEventHandler);
+            startTest();
         }
 
-        document.addEventListener("keydown", resultsEventHandler)
+        start_button.addEventListener("click", startTestEventHandler);
 
         let results = "You Reacted in: " + rt + " ms!";
         document.querySelector("#test_page_results_text").innerHTML = results;
         document.querySelector("#test_page_results_wrapper").style.display = "flex"
 
-        document.querySelector("#test_page_start_button").style.backgroundColor = "red"
-        document.querySelector("#test_page_start_button").innerHTML = "START"
+        start_button.style.backgroundColor = "red"
+        start_button.innerHTML = "START"
 
-        /*
-        document.onkeydown = (e) => {
-            if (e.key == " ") {
-                document.onkeydown = null;
-                startTest();
-            }
-        }
-        */
+        document.querySelector("#test_page_results_submit_button").onclick = () => {submitResults(rt, pi)}
+
+    }
+
+
+    function submitResults(rt, pi) {
+        let form = document.querySelector("#submitResultsForm");
+        let rtTag = document.querySelector("#rtTag");
+        rtTag.value = rt;
+        let piTag = document.querySelector("#piTag");
+        piTag.value = pi;
+        form.submit();
     }
 
 
