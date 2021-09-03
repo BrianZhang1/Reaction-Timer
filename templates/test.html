@@ -50,7 +50,10 @@
                     <li>Click the start button to begin!</li>
                     <li>After start is clicked, the button will turn green. When it does, click again!</li>
                     <li>View your results and upload them to the leaderboard if you wish.</li>
-                    <li class="small">Note: Uploading results requires you to be logged in.</li>
+
+                    {% if not logged_in %}
+                    <li class="small">Note: <strong>You are not logged in!</strong> You will not be able to save your results.</li>
+                    {% endif %}
                 </ul>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra nibh ut rutrum pulvinar. Praesent eu arcu nec ligula dapibus auctor. Suspendisse sit amet elit pharetra, porttitor eros non, iaculis lorem. Integer eu enim ultricies, accumsan nisi non, finibus velit. Nullam et ultrices purus. In hac habitasse platea dictumst. Nunc aliquam elit vel tellus sollicitudin, ut laoreet leo dignissim. Aliquam dictum tellus venenatis venenatis accumsan. Phasellus neque diam, pellentesque viverra tristique eu, hendrerit et mauris. Mauris ac quam non sapien gravida pharetra sed quis lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mattis nisi quis ultricies iaculis. In orci justo, lacinia id quam in, sollicitudin laoreet nunc. Mauris vel nisl vel ligula tincidunt commodo aliquet quis nisl. Sed maximus est a purus luctus commodo. Sed tristique ex in felis pellentesque pharetra.</p>
             </div>
