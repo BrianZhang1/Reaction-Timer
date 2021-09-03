@@ -45,11 +45,7 @@ def index():
 
     logged_in = session["logged_in"]
     if logged_in:
-        con = sqlite3.connect("data.db")
-        cur = con.cursor()
         username = uid_to_username(session["uid"])
-        cur.close()
-        con.close()
         return render_template("index.html", logged_in=True, username=username)
 
     elif not logged_in:
@@ -101,11 +97,7 @@ def view():
         db = cur.fetchall()
         logged_in = session["logged_in"]
         if logged_in:
-            con = sqlite3.connect("data.db")
-            cur = con.cursor()
             username = uid_to_username(session["uid"])
-            cur.close()
-            con.close()
             return render_template("view.html", db=db, logged_in=True, username=username)
         elif not logged_in:
             return render_template("view.html", db=db, logged_in=False)
@@ -203,11 +195,7 @@ def profile():
     logged_in = session["logged_in"]
 
     if logged_in:
-        con = sqlite3.connect("data.db")
-        cur = con.cursor()
         username = uid_to_username(session["uid"])
-        cur.close()
-        con.close()
         return render_template("profile.html", logged_in=True, username=username)
 
     elif not logged_in:

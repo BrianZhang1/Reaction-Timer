@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../static/styles.css" />
-        <title>View Data</title>
+        <title>Leaderboard</title>
     </head>
     <body>
         <div class="navbar">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="content">
-            <h1>Data</h1>
+            <h1>Leaderboard</h1>
             <table>
                 <thead>
                     <tr>
@@ -57,6 +57,7 @@
                         <td>{{ row[3] }}</td>
                         <td>{{ row[4] }}</td>
                         <td>
+                            {% if logged_in and username == row[6] %}
                             <form action="/view" method="POST">
                                 <input
                                     name="id"
@@ -67,6 +68,7 @@
                                 />
                                 <input type="submit" value="X" />
                             </form>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
